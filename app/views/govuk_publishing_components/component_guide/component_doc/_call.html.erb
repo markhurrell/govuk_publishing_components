@@ -1,3 +1,16 @@
 <div class="component-call component-highlight" contenteditable>
-  <pre><code><%= example.highlight_code("\<%= render \"#{@component_doc.partial_path}\", #{example.pretty_data} %\>") %></code></pre>
+  <%
+    block_arguments = example.block && example.block_arguments ? "|(#{example.block_arguments.join(", ")})|" : ""
+    render_end = if example.block
+                   "do #{block_arguments} %\>\n  #{example.block}\n\<% end %\>"
+                 else
+                   "%\>"
+                 end
+  %>
+
+  <pre>
+    <code>
+      <%= example.highlight_code("\<%= render \"#{@component_doc.partial_path}\", #{example.pretty_data} #{render_end}") %>
+    </code>
+  </pre>
 </div>

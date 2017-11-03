@@ -5,13 +5,17 @@ module GovukPublishingComponents
     attr_reader :id,
                 :data,
                 :context,
-                :description
+                :description,
+                :block,
+                :block_arguments
 
-    def initialize(id, data, context, description)
+    def initialize(id, data, context, description, block, block_arguments)
       @id = id
       @data = data || {}
       @context = context || {}
       @description = description || false
+      @block = block
+      @block_arguments = block_arguments || []
     end
 
     def name

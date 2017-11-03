@@ -2,5 +2,15 @@
             <% if example.right_to_left? %>direction-rtl<% end %>
             <% if example.dark_background? %>dark-background<% end %>
             <% if preview_page %>component-guide-preview--simple<% end %>" data-content="EXAMPLE">
-  <%= render component_doc.partial_path, example.html_safe_data %>
+  <%= render component_doc.partial_path, example.html_safe_data do |block_arguments| %>
+    <% if example.block %>
+      <%
+        locals = example.block_arguments.each_with_index.each_with_object({}) do |(key, index), hash|
+          hash[key] = block_arguments[index]
+        end
+      %>
+
+      <%= render inline: example.block, locals: locals.deep_symbolize_keys %>
+    <% end %>
+  <% end %>
 </div>
