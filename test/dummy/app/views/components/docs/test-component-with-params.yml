@@ -17,3 +17,10 @@ examples:
       test_component_parameter: 'A different value'
     context:
       right_to_left: true
+  example_with_symbol:
+    data:
+      symbol_parameter: :should_be_a_symbol
+      string_parameter: "should_be_a_string"
+      symbol_string_parameter_array:
+      - :should_be_a_symbol_item
+      - "should_be_a_string_item"

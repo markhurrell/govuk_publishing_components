@@ -1,4 +1,5 @@
 require 'rouge'
+require 'awesome_print'
 
 module GovukPublishingComponents
   class ComponentExample
@@ -25,7 +26,11 @@ module GovukPublishingComponents
     end
 
     def pretty_data
-      JSON.pretty_generate(data).gsub('\\n', "\n    ").gsub(/"(\w*)":/, '\1:').strip
+      # JSON.pretty_generate(data)
+      #   .gsub('\\n', "\n    ")
+      #   .gsub(/"(\w*)":/, '\1:')
+      #   .strip
+      ap(data)
     end
 
     def data?

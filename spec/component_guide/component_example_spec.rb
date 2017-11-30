@@ -35,6 +35,12 @@ describe 'Component example' do
     expect(page).to have_selector('.component-guide-preview .test-component-with-params', text: 'A different value')
   end
 
+  it 'passes params in examples to and keeps the symbol output' do
+    visit '/component-guide/test-component-with-params/example_with_symbol'
+    expect(page).to have_content('<%= render "components/test-component-with-params", { symbol_parameter: :should_be_a_symbol, symbol_parameter_array: [ :or ] } %>')
+    expect(page).to have_selector('.component-guide-preview .test-component-with-params', text: 'Should be a symbol on output')
+  end
+
   it 'marks strings in examples as html_safe' do
     visit '/component-guide/test-component-with-html-params'
     within ".test-component-with-html-params" do

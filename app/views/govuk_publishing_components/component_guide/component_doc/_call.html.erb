@@ -1,3 +1,16 @@
 <div class="component-call component-highlight" contenteditable>
-  <pre><code><%= example.highlight_code("\<%= render \"#{@component_doc.partial_path}\", #{example.pretty_data} %\>") %></code></pre>
+
+  <% pretty_print_data = capture do %>
+    <%=
+      strip_tags(ap(
+        example.data,
+        { index: false, indent: 2, plain: true, left_align: true }
+      ))
+      .gsub(' =&gt;', ':')
+      .gsub(/"(\w*)":/, '\1:')
+      .html_safe
+      # .gsub(/\n/, "\ntest")
+    %>
+  <% end %>
+  <pre><code><%= example.highlight_code("\<%= render \"#{@component_doc.partial_path}\", #{pretty_print_data.strip} %\>") %></code></pre>
 </div>
