@@ -1,3 +1,7 @@
+# 3.2.0
+
+* Add label, radio, fieldset components for forms (PR #116, PR #123)
+
 # 3.1.0
 
 * Add support for components which accept a block (PR #117)
