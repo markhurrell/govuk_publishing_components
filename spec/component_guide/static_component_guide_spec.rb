@@ -3,12 +3,10 @@ require "spec_helper"
 describe 'Static’s component guide' do
   before(:all) do
     GovukPublishingComponents.configure { |config| config.static = true }
-    GovukPublishingComponents::ApplicationController.include(Slimmer::LocalGovukComponents)
   end
 
   after(:all) do
     GovukPublishingComponents.configure { |config| config.static = false }
-    GovukPublishingComponents::ApplicationController.include(Slimmer::GovukComponents)
   end
 
   it 'loads a static (shared) component with correct component directory' do
