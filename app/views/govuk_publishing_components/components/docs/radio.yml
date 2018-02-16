@@ -82,6 +82,16 @@ examples:
         text: "Use Government Gateway"
       - value: "govuk-verify"
         text: "Use GOV.UK Verify"
+  with_margin_bottom:
+    description: "Sometimes you may need to create a gap between a group of radio buttons and the next element on the page."
+    data:
+      name: "radio-margin-bottom"
+      margin_bottom: true
+      items:
+      - value: "government-gateway"
+        text: "Use Government Gateway"
+      - value: "govuk-verify"
+        text: "Use GOV.UK Verify"
   with_or_divider:
     description: "See [related service manual gudiance for this pattern](https://www.gov.uk/service-manual/design/writing-for-user-interfaces#ask-questions-that-users-can-understand)"
     data:

@@ -1,7 +1,15 @@
 @import "helpers/variables";
 @import "helpers/px-to-em";
 
-.gem-c-radio {
+.gem-c-radio--bottom-margin {
+  margin-bottom: $gutter-half;
+
+  @include media(tablet) {
+    margin-bottom: $gutter * 1.5;
+  }
+}
+
+.gem-c-radio__item {
   display: block;
 
   position: relative;
@@ -14,8 +22,8 @@
   @include core-19;
 }
 
-.gem-c-radio:last-child,
-.gem-c-radio:last-of-type {
+.gem-c-radio__item:last-child,
+.gem-c-radio__item:last-of-type {
   margin-bottom: 0;
 }
 
@@ -118,7 +126,7 @@
 }
 
 // TODO: Can be replaced by spacing + typography helpers from GOV.UK Frontend
-.gem-c-radio--margin-bottom-0 {
+.gem-c-radio__item--margin-bottom-0 {
   margin-bottom: $gem-spacing-scale-0 !important;
 }
 
