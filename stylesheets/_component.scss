@@ -1,0 +1,26 @@
+// Container file for all govuk-component specific styling
+
+// Component specific govuk_frontend_toolkit includes
+@import "design-patterns/alpha-beta";
+
+// Component mixins
+@import "mixins/back-arrow";
+@import "mixins/margins";
+@import "mixins/touch-friendly-links";
+
+// Components styles
+@import "alpha-label";
+@import "beta-label";
+@import "document-footer";
+@import "govspeak";
+@import "govspeak-html-publication";
+@import "metadata";
+@import "title";
+@import "previous-and-next-navigation";
+@import "breadcrumbs";
+@import "related-items";
+@import "organisation-logo";
+@import "taxonomy-sidebar";
+@import "search";
+@import "button";
+@import "lead-paragraph";
