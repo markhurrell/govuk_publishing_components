@@ -1,4 +1,8 @@
+require_relative '../finders/finders_helper'
+
 class RelatedNavigationHelper
+  include FindersHelper
+
   MAX_SECTION_LENGTH = 5
   DEFINED_SECTIONS = %w(
     related_guides
@@ -82,16 +86,36 @@ private
   def related_items
     links = build_links_for_sidebar(quick_links, "url")
     mainstream_links = related_mainstream_content
+    finder_link = related_finder
     related_ordered_items = link_group("ordered_related_items")
     if links.any?
-      links + mainstream_links
+      links + mainstream_links + finder_link
     else
-      build_links_for_sidebar(related_ordered_items) + mainstream_links
+      build_links_for_sidebar(related_ordered_items) + mainstream_links + finder_link
     end
   end
 
   def quick_links
     @content_item.dig("details", "quick_links").to_a
+  end
+
+  def related_finder
+    return [] unless content_item_needs_finder?
+    [
+      {
+      "text" => finder_link_text,
+      "path" => finder_path_and_params,
+      "finder" => true,
+      }
+    ]
+  end
+
+  def content_item_needs_finder?
+    NAV_TYPES.each { |k, _| return true if k.include?(@content_item["schema_name"])}
+  end
+
+  def document_type
+    @content_item["document_type"]
   end
 
   def related_world_locations
@@ -228,13 +252,13 @@ private
   end
 
   def related_mainstream_content
-    return [] unless @content_item["document_type"] == "detailed_guide"
+    return [] unless document_type == "detailed_guide"
     content = link_group("related_mainstream_content")
     build_links_for_sidebar(content)
   end
 
   def related_guides
-    return [] unless @content_item["document_type"] == "detailed_guide"
+    return [] unless document_type == "detailed_guide"
     guides = link_group("related_guides")
     build_links_for_sidebar(guides)
   end

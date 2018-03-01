@@ -130,7 +130,12 @@ RSpec.describe RelatedNavigationHelper do
         })
 
       expected = [
-        { "related_items" => [{ path: "/related-item", text: "related item" }] },
+        { "related_items" =>
+          [
+            { path: "/related-item", text: "related item" },
+            # { path: "/finder", text: "finder", finder: true }
+          ]
+        },
         { "related_guides" => [] },
         { "collections" => [{ path: "/related-collection", text: "related collection" }] },
         { "topics" => [{ path: "/related-topic", text: "related topic" }, { path: "/mainstream-topic", text: "mainstream topic" }] },
@@ -219,6 +224,63 @@ RSpec.describe RelatedNavigationHelper do
       expect(payload).to eql(expected)
     end
 
+    it "returns finders in related items" do
+      payload = payload_for("specialist_document",
+        "details" => {
+          "body" => "body",
+          "metadata" => {
+            "case_state" => "closed",
+          }
+        },
+        "links" => {
+          "policy_areas" => [
+            {
+              "title" => "Policy",
+              "locale" => "en",
+              "content_id" => "84212fda-daea-4ebf-bfb2-7db1383decbc",
+              "base_path" => "/policy",
+            }
+          ],
+          "primary_publishing_organisation" => [
+            {
+              "title" => "Organisation",
+              "locale" => "en",
+              "content_id" => "c17d6eab-8230-4507-9029-bbb181e7b229",
+              "base_path" => "/organisation",
+            }
+          ],
+          "finder" => [
+            {
+              "base_path" => "/finder",
+              "content_id" => "2503ee69-2a2c-4457-8cc2-6f2d6d968b4e",
+              "locale" => "en",
+              "title" => "finder",
+            }
+          ]
+        })
+
+      expected = [
+        {
+          "related_items" => [
+            {
+              "text" => "More specialist documents about Policy from Organisation",
+              "path" => "/finder",
+              "finder" => true,
+            }
+          ]
+        },
+        { "related_guides" => [] },
+        { "collections" => [] },
+        { "topics" => [] },
+        { "policies" => [] },
+        { "topical_events" => [] },
+        { "world_locations" => [] },
+        { "statistical_data_sets" => [] },
+        { "worldwide_organisations" => [] },
+      ]
+
+      expect(payload).to eql(expected)
+    end
     it "deduplicates topics for mainstream content" do
       mainstream_browse_link = {
         "content_id" => "fecdc8c8-4006-4f8e-95d5-fe40ca49c7a8",
