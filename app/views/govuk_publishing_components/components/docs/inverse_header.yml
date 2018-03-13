@@ -1,7 +1,7 @@
 name: Inverse header
 description: A wrapper to contain header content in white text
 body: |
-  This component can be passed a block of template code and will wrap it in a blue header. This is as light-touch as possible and doesn't attempt to deal with the margins and paddings of its content, neither does it enforce the white text it requires. Implemented to accomodate topic and list page headings and breadcrumbs but unopinionated about its contents.
+  This component can be passed a block of template code and will wrap it in a blue header. This is as light-touch as possible and doesn't attempt to deal with the margins and paddings of its content. Implemented to accomodate topic and list page headings and breadcrumbs but unopinionated about its contents. White text is applied for text and links and must be overridden if a different colour is required.
 
 accessibility_criteria: |
   The component must:

@@ -1,5 +1,10 @@
 .gem-c-inverse-header {
   width: 100%;
   background-color: $govuk-blue;
+  color: $white;
   padding: $gutter-half;
+}
+
+.gem-c-inverse-header a {
+  color: $white;
 }
