@@ -1,6 +1,24 @@
-# unreleased
+# 5.5.3
 
-* Add new inverse header component.
+Enforce white content in inverse component (PR #214).
+
+# 5.5.2
+
+Add full-width flag to remove left and right padding when using a full width page header (PR #212).
+Update design of document list component for topic pages (PR #202)
+
+# 5.5.1
+
+Fix bug in related_navigation helper that did not gracefully handle ordered related items that aren't tagged to a mainstream browse page (PR #210).
+
+# 5.5.0
+
+Add new inverse header component (PR #203).
+
+# 5.4.1
+
+Remove worldwide organisation links from the payload used by the related_navigation component, as they're not required.
+Fix bug where the correct number of mainstream browse pages weren't displaying in the related_navigation component in cases where a grandparent mainstream browse page is present (PR #205).
 
 # 5.4.0
 
