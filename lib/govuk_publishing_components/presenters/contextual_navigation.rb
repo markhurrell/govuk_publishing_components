@@ -23,19 +23,7 @@ module GovukPublishingComponents
 
       def breadcrumbs_based_on_parent
         if content_item["schema_name"] == "specialist_document"
-          parent_finder = content_item.dig("links", "finder", 0)
-          return [] unless parent_finder
-
-          [
-            {
-              title: "Home",
-              url: "/",
-            },
-            {
-              title: parent_finder['title'],
-              url: parent_finder['base_path'],
-            }
-          ]
+          SpecialistDocumentBreadcrumbs.new(content_item).breadcrumbs
         else
           BreadcrumbsBasedOnParent.new(content_item).breadcrumbs
         end
