@@ -34,7 +34,7 @@ module GovukPublishingComponents
       end
 
       def step_nav_helper
-        @step_nav_helper ||= StepNavHelper.new(content_item, request_path)
+        @step_nav_helper ||= PageWithStepNavigation.new(content_item, request_path)
       end
 
     private
