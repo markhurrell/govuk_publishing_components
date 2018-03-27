@@ -4,8 +4,6 @@ module GovukPublishingComponents
   module Presenters
     # @private
     class ContextualNavigation
-      attr_reader :content_item, :request_path
-
       # @param content_item A content item hash with strings as keys
       # @param request_path `request.path`
       def initialize(content_item, request_path)
@@ -49,6 +47,10 @@ module GovukPublishingComponents
       def show_step_by_step_item?
         step_nav_helper.show_sidebar?
       end
+
+    private
+
+      attr_reader :content_item, :request_path
     end
   end
 end
