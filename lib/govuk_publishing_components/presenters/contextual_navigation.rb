@@ -37,7 +37,7 @@ module GovukPublishingComponents
             }
           ]
         else
-          BreadcrumbsBasedOnParent.new(content_item).breadcrumbs[:breadcrumbs]
+          BreadcrumbsBasedOnParent.new(content_item).breadcrumbs
         end
       end
 
