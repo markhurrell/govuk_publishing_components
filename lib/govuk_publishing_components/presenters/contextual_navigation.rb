@@ -21,7 +21,7 @@ module GovukPublishingComponents
         @taxon_breadcrumbs ||= GovukNavigationHelpers::TaxonBreadcrumbs.new(content_item).breadcrumbs
       end
 
-      def breadcrumbs
+      def breadcrumbs_based_on_parent
         if content_item["schema_name"] == "specialist_document"
           parent_finder = content_item.dig("links", "finder", 0)
           return [] unless parent_finder
@@ -37,7 +37,7 @@ module GovukPublishingComponents
             }
           ]
         else
-          GovukNavigationHelpers::Breadcrumbs.new(content_item).breadcrumbs[:breadcrumbs]
+          BreadcrumbsBasedOnParent.new(content_item).breadcrumbs[:breadcrumbs]
         end
       end
 

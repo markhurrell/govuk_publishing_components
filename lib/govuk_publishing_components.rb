@@ -1,5 +1,6 @@
 require "govuk_publishing_components/config"
 require "govuk_publishing_components/engine"
+require "govuk_publishing_components/presenters/breadcrumbs_based_on_parent"
 require "govuk_publishing_components/presenters/contextual_navigation"
 require "govuk_publishing_components/presenters/navigation_type"
 require "govuk_publishing_components/presenters/related_navigation_helper"
