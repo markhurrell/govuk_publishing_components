@@ -4,6 +4,12 @@ module GovukPublishingComponents
   module Presenters
     # @private
     class ContextualNavigation
+      delegate :should_present_taxonomy_navigation?,
+        :should_present_step_by_step_breadcrumbs?,
+        :show_step_by_step_sidebar?,
+        :show_step_by_step_item?,
+        to: :what_to_show
+
       # @param content_item A content item hash with strings as keys
       # @param request_path `request.path`
       def initialize(content_item, request_path)
@@ -27,30 +33,17 @@ module GovukPublishingComponents
         end
       end
 
-      def should_present_taxonomy_navigation?
-        navigation = NavigationType.new(content_item)
-        navigation.should_present_taxonomy_navigation?
-      end
-
       def step_nav_helper
         @step_nav_helper ||= StepNavHelper.new(content_item, request_path)
-      end
-
-      def should_present_step_by_step_breadcrumbs?
-        step_nav_helper.show_header?
-      end
-
-      def show_step_by_step_sidebar?
-        step_nav_helper.show_related_links?
-      end
-
-      def show_step_by_step_item?
-        step_nav_helper.show_sidebar?
       end
 
     private
 
       attr_reader :content_item, :request_path
+
+      def what_to_show
+        @what_to_show ||= WhatToShow.new(content_item)
+      end
     end
   end
 end

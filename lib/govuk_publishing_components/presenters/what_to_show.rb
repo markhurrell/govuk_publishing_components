@@ -1,7 +1,7 @@
 module GovukPublishingComponents
   module Presenters
     # @private
-    class NavigationType
+    class WhatToShow
       GUIDANCE_SCHEMAS =
         %w{answer contact guide detailed_guide document_collection publication}.freeze
 
@@ -15,7 +15,26 @@ module GovukPublishingComponents
           content_schema_is_guidance?
       end
 
+      def should_present_step_by_step_breadcrumbs?
+        step_navs.count == 1
+      end
+
+      def show_step_by_step_sidebar?
+        step_navs.any? && step_navs.count < 5
+      end
+
+      def show_step_by_step_item?
+        should_present_step_by_step_breadcrumbs? &&
+          step_navs.first.dig("details", "step_by_step_nav", "steps").present?
+      end
+
     private
+
+      attr_reader :content_item
+
+      def step_navs
+        content_item.dig("links", "part_of_step_navs").to_a
+      end
 
       def content_is_tagged_to_a_live_taxon?
         @content_item.dig("links", "taxons").to_a.any? { |taxon| taxon["phase"] == "live" }
