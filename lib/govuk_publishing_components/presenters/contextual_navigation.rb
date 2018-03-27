@@ -30,12 +30,12 @@ module GovukPublishingComponents
       end
 
       def should_present_taxonomy_navigation?
-        navigation = GovukPublishingComponents::Presenters::NavigationType.new(content_item)
+        navigation = NavigationType.new(content_item)
         navigation.should_present_taxonomy_navigation?
       end
 
       def step_nav_helper
-        @step_nav_helper ||= GovukPublishingComponents::Presenters::StepNavHelper.new(content_item, request_path)
+        @step_nav_helper ||= StepNavHelper.new(content_item, request_path)
       end
 
       def should_present_step_by_step_breadcrumbs?
