@@ -28,8 +28,6 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
       it "handled gracefully" do
         step_nav_links = described_class.new(content_store_response, '/giant-pool/planning')
 
-        expect(step_nav_links.step_navs.count).to eq(0)
-
         expect(step_nav_links.header).to eq({})
 
         expect(step_nav_links.related_links).to eq([])
@@ -51,8 +49,6 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
 
       it "parses the content item" do
         step_nav_links = described_class.new(content_store_response, '/vomit-comet-session')
-
-        expect(step_nav_links.step_navs.count).to eq(1)
 
         expect(step_nav_links.header).to eq(
           path: "/learn-to-spacewalk",
@@ -92,8 +88,6 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
       it "parses the content item" do
         step_nav_links = described_class.new(content_store_response, '/vomit-comet-session')
 
-        expect(step_nav_links.step_navs.count).to eq(2)
-
         expect(step_nav_links.related_links).to eq([
           {
             href: "/learn-to-spacewalk",
@@ -106,25 +100,6 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
             tracking_id: "aaaa-bbbb"
           }
         ])
-      end
-    end
-
-
-    context "for a content item with many `part_of_step_navs` links" do
-      let(:content_store_response) do
-        {
-          "title" => "Book a session in the vomit comet",
-          "document_type" => "transaction",
-          "links" => {
-            "part_of_step_navs" => Array.new(6, step_nav),
-          }
-        }
-      end
-
-      it "parses the content item" do
-        step_nav_links = described_class.new(content_store_response, '/vomit-comet-session')
-
-        expect(step_nav_links.step_navs.count).to eq(6)
       end
     end
   end
@@ -247,7 +222,6 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
 
     it "sets up navigation appropriately" do
       step_nav_helper = described_class.new(content_item, "/random_url")
-      expect(step_nav_helper.step_navs.count).to eq(1)
 
       sidebar = step_nav_helper.sidebar
 
@@ -263,8 +237,6 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
     it "configures active links appropriately" do
       step_nav_helper = described_class.new(content_item, "/driving-lessons-learning-to-drive")
       sidebar = step_nav_helper.sidebar
-
-      expect(step_nav_helper.step_navs.count).to eq(1)
 
       # shows the step with /driving-lessons-learning-to-drive
       expect(sidebar[:show_step]).to eq(2)

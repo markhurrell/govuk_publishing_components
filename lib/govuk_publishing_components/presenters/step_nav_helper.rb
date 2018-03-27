@@ -8,12 +8,6 @@ module GovukPublishingComponents
         @current_path = current_path
       end
 
-      def step_navs
-        @step_navs ||= parsed_step_navs.map do |step_nav|
-          StepByStepModel.new(step_nav)
-        end
-      end
-
       def related_links
         step_navs.map do |step_nav|
           {
@@ -46,6 +40,12 @@ module GovukPublishingComponents
     private
 
       attr_reader :content_item, :current_path
+
+      def step_navs
+        @step_navs ||= parsed_step_navs.map do |step_nav|
+          StepByStepModel.new(step_nav)
+        end
+      end
 
       def first_step_nav
         step_navs.first
