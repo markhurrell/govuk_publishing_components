@@ -41,6 +41,14 @@ module GovukPublishingComponents
       def should_present_step_by_step_breadcrumbs?
         step_nav_helper.show_header?
       end
+
+      def show_step_by_step_sidebar?
+        step_nav_helper.show_related_links?
+      end
+
+      def show_step_by_step_item?
+        step_nav_helper.show_sidebar?
+      end
     end
   end
 end
