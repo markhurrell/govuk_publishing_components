@@ -30,13 +30,10 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
 
         expect(step_nav_links.step_navs.count).to eq(0)
 
-        expect(step_nav_links.show_header?).to be false
         expect(step_nav_links.header).to eq({})
 
-        expect(step_nav_links.show_related_links?).to be false
         expect(step_nav_links.related_links).to eq([])
 
-        expect(step_nav_links.show_sidebar?).to be false
         expect(step_nav_links.sidebar).to eq(nil)
       end
     end
@@ -57,14 +54,12 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
 
         expect(step_nav_links.step_navs.count).to eq(1)
 
-        expect(step_nav_links.show_header?).to be true
         expect(step_nav_links.header).to eq(
           path: "/learn-to-spacewalk",
           title: "Learn to spacewalk: small step by giant leap",
           tracking_id: "cccc-dddd"
         )
 
-        expect(step_nav_links.show_related_links?).to be true
         expect(step_nav_links.related_links).to eq([
           {
             href: "/learn-to-spacewalk",
@@ -72,8 +67,6 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
             tracking_id: "cccc-dddd"
           }
         ])
-
-        expect(step_nav_links.show_sidebar?).to be true
       end
     end
 
@@ -101,7 +94,6 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
 
         expect(step_nav_links.step_navs.count).to eq(2)
 
-        expect(step_nav_links.show_related_links?).to be true
         expect(step_nav_links.related_links).to eq([
           {
             href: "/learn-to-spacewalk",
@@ -114,9 +106,6 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
             tracking_id: "aaaa-bbbb"
           }
         ])
-
-        expect(step_nav_links.show_header?).to be false
-        expect(step_nav_links.show_sidebar?).to be false
       end
     end
 
@@ -136,10 +125,6 @@ RSpec.describe GovukPublishingComponents::Presenters::StepNavHelper do
         step_nav_links = described_class.new(content_store_response, '/vomit-comet-session')
 
         expect(step_nav_links.step_navs.count).to eq(6)
-
-        expect(step_nav_links.show_header?).to be false
-        expect(step_nav_links.show_related_links?).to be false
-        expect(step_nav_links.show_sidebar?).to be false
       end
     end
   end

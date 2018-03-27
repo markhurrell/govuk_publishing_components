@@ -14,18 +14,6 @@ module GovukPublishingComponents
         end
       end
 
-      def show_sidebar?
-        show_header? && first_step_nav.steps.present?
-      end
-
-      def show_header?
-        step_navs.count == 1
-      end
-
-      def show_related_links?
-        step_navs.any? && step_navs.count < 5
-      end
-
       def related_links
         step_navs.map do |step_nav|
           {
@@ -37,24 +25,22 @@ module GovukPublishingComponents
       end
 
       def sidebar
-        if show_sidebar?
-          @sidebar ||= first_step_nav.content.tap do |sb|
-            configure_for_sidebar(sb)
-            sb.merge!(small: true, heading_level: 3, tracking_id: first_step_nav.content_id)
-          end
+        return unless first_step_nav
+
+        @sidebar ||= first_step_nav.content.tap do |sb|
+          configure_for_sidebar(sb)
+          sb.merge!(small: true, heading_level: 3, tracking_id: first_step_nav.content_id)
         end
       end
 
       def header
-        if show_header?
-          {
-            title: first_step_nav.title,
-            path: first_step_nav.base_path,
-            tracking_id: first_step_nav.content_id
-          }
-        else
-          {}
-        end
+        return {} unless first_step_nav
+
+        {
+          title: first_step_nav.title,
+          path: first_step_nav.base_path,
+          tracking_id: first_step_nav.content_id
+        }
       end
 
     private
