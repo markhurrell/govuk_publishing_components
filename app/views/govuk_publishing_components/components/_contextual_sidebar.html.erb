@@ -10,7 +10,7 @@
     <%= render 'govuk_publishing_components/components/step_by_step_nav',
       navigation.step_nav_helper.sidebar %>
   <% end %>
-<% elsif navigation.should_present_taxonomy_navigation? %>
+<% elsif navigation.show_taxonomy_navigation? %>
   <!-- rendering taxonomy sidebar -->
   <%= render 'govuk_component/taxonomy_sidebar',
     navigation.taxonomy_sidebar %>

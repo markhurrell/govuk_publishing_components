@@ -9,13 +9,13 @@ module GovukPublishingComponents
         @content_item = content_item
       end
 
-      def should_present_taxonomy_navigation?
+      def show_taxonomy_navigation?
         !content_is_tagged_to_browse_pages? &&
           content_is_tagged_to_a_live_taxon? &&
           content_schema_is_guidance?
       end
 
-      def should_present_step_by_step_breadcrumbs?
+      def show_step_by_step_breadcrumbs?
         step_navs.count == 1
       end
 
@@ -24,7 +24,7 @@ module GovukPublishingComponents
       end
 
       def show_step_by_step_item?
-        should_present_step_by_step_breadcrumbs? &&
+        show_step_by_step_breadcrumbs? &&
           step_navs.first.dig("details", "step_by_step_nav", "steps").present?
       end
 

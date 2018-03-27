@@ -4,8 +4,8 @@ module GovukPublishingComponents
   module Presenters
     # @private
     class ContextualNavigation
-      delegate :should_present_taxonomy_navigation?,
-        :should_present_step_by_step_breadcrumbs?,
+      delegate :show_taxonomy_navigation?,
+        :show_step_by_step_breadcrumbs?,
         :show_step_by_step_sidebar?,
         :show_step_by_step_item?,
         to: :what_to_show
