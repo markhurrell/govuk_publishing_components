@@ -1,6 +1,6 @@
 <% navigation = GovukPublishingComponents::Presenters::ContextualNavigation.new(content_item, request.path) %>
 
-<% if navigation.step_nav_helper.show_header? %>
+<% if navigation.should_present_step_by_step_breadcrumbs? %>
   <!-- Rendering step by step nav -->
   <%= render 'govuk_publishing_components/components/step_by_step_nav_header', navigation.step_nav_helper.header %>
 <% else %>

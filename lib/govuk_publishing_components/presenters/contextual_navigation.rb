@@ -49,6 +49,10 @@ module GovukPublishingComponents
       def step_nav_helper
         @step_nav_helper ||= GovukPublishingComponents::Presenters::StepNavHelper.new(content_item, request_path)
       end
+
+      def should_present_step_by_step_breadcrumbs?
+        step_nav_helper.show_header?
+      end
     end
   end
 end
